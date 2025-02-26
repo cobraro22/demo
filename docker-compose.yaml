@@ -1,0 +1,11 @@
+version: "27.5.1"
+services:
+  playwrightest:
+    image: playwrightestimage
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: npx playwright test
+    volumes:
+      - ./playwright-report/:/app/playwright-report
+      - ./test-results/:/app/test-results
