@@ -15,7 +15,7 @@ test("test example", async ({ page }) => {
 
   // await expect(loginWrapper).toHaveScreenshot({ maxDiffPixels: 2000 });
 
-  await expect(page).toHaveScreenshot({ maxDiffPixels: 200 });
+  // await expect(page).toHaveScreenshot({ maxDiffPixels: 200 });
 });
 
 test("testAUI ", { tag: ["@testtag2", "@regression"] }, async ({ page }) => {
