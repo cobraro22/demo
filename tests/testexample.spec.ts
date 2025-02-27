@@ -28,6 +28,8 @@ test("testAUI ", { tag: ["@testtag2", "@regression"] }, async ({ page }) => {
 
   console.log("Bicicleta are pretul: " + pretMain);
 
+  await argosScreenshot(page, "bicicleta");
+
   // console.log(process.env.EMAG2);
 
   await page.goto(process.env.EMAG2);
@@ -45,6 +47,8 @@ test("testAUI ", { tag: ["@testtag2", "@regression"] }, async ({ page }) => {
     .locator("tr", { hasText: "Euribor 3 months" })
     .locator(".text-right")
     .textContent();
+
+  await argosScreenshot(page, "euribor");
 
   // page.getByRole('row',{name:"Euribor 3 "}).locator(".text-right")
 
