@@ -6,10 +6,12 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "type": "module",
   "dependencies": {
     "playwright": "^1.50.1"
   },
   "devDependencies": {
+    "@argos-ci/playwright": "^4.1.0",
     "@playwright/test": "^1.50.1",
     "@types/node": "^22.13.5",
     "allure-playwright": "^3.2.0",

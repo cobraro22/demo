@@ -7,8 +7,9 @@ import { defineConfig, devices } from "@playwright/test";
 // import dotenv from "dotenv";
 // import path from "path";
 // dotenv.config({ path: path.resolve(__dirname, ".env") });
-
-require("dotenv").config();
+import * as dotenv from "dotenv";
+dotenv.config();
+// require("dotenv").config();
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -24,7 +25,23 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: "html",
+  // reporter: "html",
+
+  reporter: [
+    // Use "dot" reporter on CI, "list" otherwise (Playwright default).
+    process.env.CI ? ["dot"] : ["list", "html"],
+    // Add Argos reporter.
+    [
+      "@argos-ci/playwright/reporter",
+      {
+        // Upload to Argos on CI only.
+        uploadToArgos: !!process.env.CI,
+
+        // Set your Argos token (required if not using GitHub Actions).
+        // token: "ARGOS_TOKEN=argos_be61054edc572d547187d62fdf171207ba",
+      },
+    ],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   expect: {
     toMatchSnapshot: { maxDiffPixels: 500 },
@@ -35,6 +52,7 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+    screenshot: "only-on-failure",
     testIdAttribute: "data-test",
   },
 

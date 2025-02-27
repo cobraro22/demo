@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { argosScreenshot } from "@argos-ci/playwright";
 
 test("test example", async ({ page }) => {
   await page.goto("/");
@@ -36,6 +37,7 @@ test("testAUI ", { tag: ["@testtag2", "@regression"] }, async ({ page }) => {
   pretMain = await page.locator('[data-test="main-price"]').textContent();
 
   console.log("Ceainicul are pretul: " + pretMain);
+  await argosScreenshot(page, "ceainic");
 
   await page.goto(process.env.Euribor);
 
